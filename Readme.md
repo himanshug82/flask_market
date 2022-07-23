@@ -1,16 +1,20 @@
-#Steps to Run in Dev Mode
-
-$env:FLASK_APP = "market.py"
-
-$env:FLASK_DEBUG=1
-
-flask run
-
 #database commands
-from market import db
-db.create_all()
+from market.models import db
 
-from market import Item
+db.drop_all()
+db.session.commit()
+db.create_all()
+db.session.commit()
+
+from market.models import User,Item
+User.query.all()
+Item.query.all()
+
+u1= User(username='himanshu', password_hash='123456', email_address='abc@test.com')
+db.session.add(u1)
+db.session.commit()
+
+User.query.all()
 
 item1 = Item(name="Phone", price=500, barcode="1234566", description="Phone")
 item2 = Item(name="Laptop", price=1500, barcode="123144566", description="Laptop")
