@@ -29,3 +29,9 @@ db.session.add(item4)
 db.session.commit()
 
 Item.query.all()
+
+
+
+
+import os
+os.urandom(12).hex()
